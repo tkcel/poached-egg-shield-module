@@ -43,6 +43,10 @@
   .key.bt-key { background: #2a3a4a; border-color: #5a8aaa; }
   .key.special { background: #4a2a2a; border-color: #8a5a5a; }
   .key.thumb { background: #2a3a5a; border-color: #5a7aaa; }
+  .key.mouse-move { background: #2a4a4a; border-color: #5aaa9a; }
+  .key.mouse-click { background: #4a2a3a; border-color: #aa5a7a; }
+  .key.mouse-scroll { background: #3a3a2a; border-color: #8a8a5a; }
+  .key.mission { background: #3a2a5a; border-color: #7a5aaa; }
 </style>
 </head>
 <body>
@@ -56,6 +60,10 @@
   <div class="legend-item"><div class="legend-color" style="background:#2a4a3a;"></div>レイヤーキー</div>
   <div class="legend-item"><div class="legend-color" style="background:#4a3a2a;"></div>ナビ / 矢印</div>
   <div class="legend-item"><div class="legend-color" style="background:#2a3a5a;"></div>サムキー</div>
+  <div class="legend-item"><div class="legend-color" style="background:#2a4a4a;"></div>マウス移動</div>
+  <div class="legend-item"><div class="legend-color" style="background:#4a2a3a;"></div>マウスクリック</div>
+  <div class="legend-item"><div class="legend-color" style="background:#3a3a2a;"></div>スクロール</div>
+  <div class="legend-item"><div class="legend-color" style="background:#3a2a5a;"></div>Mission Control</div>
   <div class="legend-item"><div class="legend-color" style="background:#2a3a4a;"></div>Bluetooth</div>
   <div class="legend-item"><div class="legend-color" style="background:#252535;"></div>透過 (下レイヤー)</div>
   <div class="legend-item"><div class="legend-color" style="background:#222;"></div>なし</div>
@@ -63,9 +71,8 @@
 
 <script>
 // Physical layout from poached_eggs.dtsi
-// 1 unit in dtsi = 0.6px on screen
 const S = 0.6;
-const PAD = 2; // px inset from each edge
+const PAD = 2;
 
 const physicalKeys = [
   // Row 0 (y=0)
@@ -114,8 +121,8 @@ const physicalKeys = [
   { x:300,  y:300, w:100, h:100 },
   { x:400,  y:300, w:100, h:100 },
   { x:500,  y:300, w:100, h:100 },
-  { x:600,  y:300, w:140, h:100 }, // left thumb
-  { x:860,  y:300, w:140, h:100 }, // right thumb
+  { x:600,  y:300, w:140, h:100 }, // left 1.5U thumb
+  { x:860,  y:300, w:140, h:100 }, // right 1.5U thumb
   { x:1000, y:300, w:100, h:100 },
   { x:1100, y:300, w:100, h:100 },
   { x:1200, y:300, w:100, h:100 },
@@ -176,7 +183,7 @@ const layers = [
       ["LGUI",   "", "mod"],
       ["英数",   "LANG2", ""],
       ["SPACE",  "Hold: L1", "layer-key"],
-      ["SPACE",  "Hold: L1", "thumb layer-key"],
+      ["SPACE",  "Hold: L2 Mouse", "thumb layer-key"],
       ["SPACE",  "Hold: L1", "thumb layer-key"],
       ["SPACE",  "Hold: L1", "layer-key"],
       ["かな",   "Hold: LGUI", "mod"],
@@ -188,7 +195,7 @@ const layers = [
   },
   {
     name: "Layer 1: Lower",
-    desc: "Via Layer 1 ベース — 左サム長押しで有効",
+    desc: "左サム / 右1.5U / 右サム 長押しで有効",
     keys: [
       // Row 0
       ["ESC",    "", ""],
@@ -230,13 +237,13 @@ const layers = [
       ["UP",     "trans", "trans-key"],
       ["RSHFT",  "trans", "trans-key"],
       // Row 3
-      ["MO(2)",  "BT Layer", "layer-key"],
+      ["MO(3)",  "BT Layer", "layer-key"],
       ["LALT",   "trans", "trans-key"],
       ["LGUI",   "trans", "trans-key"],
       ["LGUI",   "trans", "trans-key"],
       ["英数",   "trans", "trans-key"],
       ["SPC/L1", "trans", "trans-key"],
-      ["SPC/L1", "trans", "thumb trans-key"],
+      ["SPC/L2", "trans", "thumb trans-key"],
       ["SPC/L1", "trans", "thumb trans-key"],
       ["SPC/L1", "trans", "trans-key"],
       ["かな",   "trans", "trans-key"],
@@ -247,8 +254,68 @@ const layers = [
     ]
   },
   {
-    name: "Layer 2: Bluetooth",
-    desc: "Layer 1 左下 MO(2) 長押しで有効",
+    name: "Layer 2: Mouse",
+    desc: "左1.5U 長押しで有効 ― マウス操作 + Mission Control",
+    keys: [
+      // Row 0
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["Scr \u2190", "SCRL_LEFT", "mouse-scroll"],
+      ["Scr \u2191", "SCRL_UP",   "mouse-scroll"],
+      ["Scr \u2193", "SCRL_DOWN", "mouse-scroll"],
+      ["Scr \u2192", "SCRL_RIGHT","mouse-scroll"],
+      ["-",      "", "none-key"],
+      // Row 1
+      ["LCTRL",  "trans", "trans-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["R-Clk",  "RCLK", "mouse-click"],
+      ["L-Clk",  "LCLK", "mouse-click"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["\u2190", "MOVE_LEFT",  "mouse-move"],
+      ["\u2193", "MOVE_DOWN",  "mouse-move"],
+      ["\u2191", "MOVE_UP",    "mouse-move"],
+      ["\u2192", "MOVE_RIGHT", "mouse-move"],
+      ["M-Clk",  "MCLK", "mouse-click"],
+      // Row 2
+      ["LSHFT",  "trans", "trans-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["MC",     "Ctrl+\u2191", "mission"],
+      ["-",      "", "none-key"],
+      // Row 3
+      ["MO(3)",  "BT Layer", "layer-key"],
+      ["LALT",   "trans", "trans-key"],
+      ["LGUI",   "trans", "trans-key"],
+      ["LGUI",   "trans", "trans-key"],
+      ["英数",   "trans", "trans-key"],
+      ["L-Clk",  "LCLK", "mouse-click"],
+      ["",       "held", "thumb layer-key"],
+      ["R-Clk",  "RCLK", "thumb mouse-click"],
+      ["L-Clk",  "LCLK", "mouse-click"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["Spc\u2190","Ctrl+\u2190", "mission"],
+      ["Expose", "Ctrl+\u2193", "mission"],
+      ["Spc\u2192","Ctrl+\u2192", "mission"],
+    ]
+  },
+  {
+    name: "Layer 3: Bluetooth",
+    desc: "Layer 1 or 2 の左下 MO(3) 長押しで有効",
     keys: [
       // Row 0
       ["BT CLR", "", "bt-key"],
