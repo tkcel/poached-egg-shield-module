@@ -43,9 +43,7 @@
   .key.bt-key { background: #2a3a4a; border-color: #5a8aaa; }
   .key.special { background: #4a2a2a; border-color: #8a5a5a; }
   .key.thumb { background: #2a3a5a; border-color: #5a7aaa; }
-  .key.mouse-move { background: #2a4a4a; border-color: #5aaa9a; }
-  .key.mouse-click { background: #4a2a3a; border-color: #aa5a7a; }
-  .key.mouse-scroll { background: #3a3a2a; border-color: #8a8a5a; }
+  .key.tab-nav { background: #2a4a4a; border-color: #5aaa9a; }
   .key.mission { background: #3a2a5a; border-color: #7a5aaa; }
 </style>
 </head>
@@ -60,9 +58,7 @@
   <div class="legend-item"><div class="legend-color" style="background:#2a4a3a;"></div>レイヤーキー</div>
   <div class="legend-item"><div class="legend-color" style="background:#4a3a2a;"></div>ナビ / 矢印</div>
   <div class="legend-item"><div class="legend-color" style="background:#2a3a5a;"></div>サムキー</div>
-  <div class="legend-item"><div class="legend-color" style="background:#2a4a4a;"></div>マウス移動</div>
-  <div class="legend-item"><div class="legend-color" style="background:#4a2a3a;"></div>マウスクリック</div>
-  <div class="legend-item"><div class="legend-color" style="background:#3a3a2a;"></div>スクロール</div>
+  <div class="legend-item"><div class="legend-color" style="background:#2a4a4a;"></div>タブ移動</div>
   <div class="legend-item"><div class="legend-color" style="background:#3a2a5a;"></div>Mission Control</div>
   <div class="legend-item"><div class="legend-color" style="background:#2a3a4a;"></div>Bluetooth</div>
   <div class="legend-item"><div class="legend-color" style="background:#252535;"></div>透過 (下レイヤー)</div>
@@ -183,7 +179,7 @@ const layers = [
       ["LGUI",   "", "mod"],
       ["英数",   "LANG2", ""],
       ["SPACE",  "Hold: L1", "layer-key"],
-      ["SPACE",  "Hold: L2 Mouse", "thumb layer-key"],
+      ["SPACE",  "Hold: L2 Tab", "thumb layer-key"],
       ["SPACE",  "Hold: L1", "thumb layer-key"],
       ["SPACE",  "Hold: L1", "layer-key"],
       ["かな",   "Hold: LGUI", "mod"],
@@ -254,8 +250,8 @@ const layers = [
     ]
   },
   {
-    name: "Layer 2: Mouse",
-    desc: "左1.5U 長押しで有効 ― マウス操作 + Mission Control",
+    name: "Layer 2: Tab Nav",
+    desc: "左1.5U 長押しで有効 ― タブ移動 + Mission Control",
     keys: [
       // Row 0
       ["-",      "", "none-key"],
@@ -264,24 +260,24 @@ const layers = [
       ["-",      "", "none-key"],
       ["-",      "", "none-key"],
       ["-",      "", "none-key"],
-      ["Scr \u2190", "SCRL_LEFT", "mouse-scroll"],
-      ["Scr \u2191", "SCRL_UP",   "mouse-scroll"],
-      ["Scr \u2193", "SCRL_DOWN", "mouse-scroll"],
-      ["Scr \u2192", "SCRL_RIGHT","mouse-scroll"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
       ["-",      "", "none-key"],
       ["-",      "", "none-key"],
       // Row 1
       ["LCTRL",  "trans", "trans-key"],
       ["-",      "", "none-key"],
       ["-",      "", "none-key"],
-      ["R-Clk",  "RCLK", "mouse-click"],
-      ["L-Clk",  "LCLK", "mouse-click"],
       ["-",      "", "none-key"],
-      ["\u2190", "MOVE_LEFT",  "mouse-move"],
-      ["\u2193", "MOVE_DOWN",  "mouse-move"],
-      ["\u2191", "MOVE_UP",    "mouse-move"],
-      ["\u2192", "MOVE_RIGHT", "mouse-move"],
-      ["M-Clk",  "MCLK", "mouse-click"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
+      ["\u2190Tab", "C+S+Tab", "tab-nav"],
+      ["Tab\u2192", "C+Tab",   "tab-nav"],
+      ["-",      "", "none-key"],
+      ["-",      "", "none-key"],
       ["-",      "", "none-key"],
       // Row 2
       ["LSHFT",  "trans", "trans-key"],
@@ -302,10 +298,10 @@ const layers = [
       ["LGUI",   "trans", "trans-key"],
       ["LGUI",   "trans", "trans-key"],
       ["英数",   "trans", "trans-key"],
-      ["L-Clk",  "LCLK", "mouse-click"],
+      ["-",      "", "none-key"],
       ["",       "held", "thumb layer-key"],
-      ["R-Clk",  "RCLK", "thumb mouse-click"],
-      ["L-Clk",  "LCLK", "mouse-click"],
+      ["-",      "", "thumb none-key"],
+      ["-",      "", "none-key"],
       ["-",      "", "none-key"],
       ["-",      "", "none-key"],
       ["Spc\u2190","Ctrl+\u2190", "mission"],
