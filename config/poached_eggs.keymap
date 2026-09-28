@@ -16,10 +16,10 @@
             >;
         };
 
-        // NUM: meteorite40の数字・記号配置。その他はBASEを使用。
+        // NUM: meteorite40の数字・記号配置。左上はEsc。その他はBASEを使用。
         num_layer {
             bindings = <
-                &trans           &kp N1           &kp N2           &kp N3           &kp N4           &kp N5               &kp N6           &kp N7           &kp N8           &kp N9           &kp N0           &trans
+                &kp ESC          &kp N1           &kp N2           &kp N3           &kp N4           &kp N5               &kp N6           &kp N7           &kp N8           &kp N9           &kp N0           &trans
                 &trans           &trans           &trans           &trans           &trans           &trans               &kp GRAVE        &kp SQT          &kp EQUAL        &kp BSLH         &kp SEMI         &trans
                 &trans           &trans           &trans           &trans           &trans           &trans               &kp MINUS        &kp FSLH         &kp LBKT         &kp RBKT         &trans           &trans
                 &trans           &trans           &trans           &trans           &trans           &trans           &trans               &trans           &trans           &trans           &trans           &trans           &trans           &trans
